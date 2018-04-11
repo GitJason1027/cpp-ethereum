@@ -828,6 +828,7 @@ void Client::rewind(unsigned _n)
     auto h = m_host.lock();
     if (h)
         h->reset();
+    m_tq.clear();
 }
 
 pair<h256, Address> Client::submitTransaction(TransactionSkeleton const& _t, Secret const& _secret)

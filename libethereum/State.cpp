@@ -49,7 +49,14 @@ namespace
 /// @returns true when normally halted; false when exceptionally halted.
 bool executeTransaction(Executive& _e, Transaction const& _t, OnOpFunc const& _onOp)
 {
-    _e.initialize(_t);
+    try
+    {
+        _e.initialize(_t);
+    }
+    catch (...)
+    {
+        throw;
+    }
 
     if (!_e.execute())
         _e.go(_onOp);
